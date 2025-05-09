@@ -1,0 +1,38 @@
+
+
+(![creatingFolderandGit](images/creatingFolderandGit.png))
+
+(![creatinBackendGradle](images/creatinBackendGradle.png))
+
+(![creatingFrontend](images/creatingFrontend.png))
+
+(![installingBootstrap](images/installingBootstrap.png))
+
+Dannach habe ich Springboot als Plugin und als den Springboot Starter ind die Dependency hinzugefügt:
+
+dannach Mal das Backend gestartet mit ./gradlew bootRun. und einen simplen Rootcontroller erstellt.
+(![RootController](images/RootController.png))
+
+(![RunningRootWebsite](images/RunningRootWebsite.png))
+
+desweiteren habe ich die App.js Datei angepasst. (![App.js](frontend/src/App.js)) und das frontend gestartet
+
+(![FrontendRunning](images/FrontendRunning.png))
+<video controls src="videos/ControllerWorking.mp4" title="Frontend Demonstration"></video>
+
+Alles funktioniert wie geplant. Hier noch die Erklärung zu den einzelnen Backend Komponenten.
+
+MovieController:
+
+Dieser Code speichert Filme in einer Liste. Man kann Filme abrufen (GET), hinzufügen (POST) und löschen (DELETE), wobei jeder Film automatisch eine ID bekommt.
+
+(![MovieController](images/MovieController.png))
+
+Movie:
+
+in dieser Klasse wird ein Objekt Movie erstellt mit den Attributen ID und Title
+
+(![Movie](images/Movie.png))
+
+
+
