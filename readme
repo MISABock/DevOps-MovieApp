@@ -30,7 +30,7 @@ Dieser Code speichert Filme in einer Liste. Man kann Filme abrufen (GET), hinzuf
 
 Movie:
 
-in dieser Klasse wird ein Objekt Movie erstellt mit den Attributen ID und Title
+in dieser Klasse wird ein Objekt Movie erstellt mit den Attributen ID und Titel
 
 (![Movie](images/Movie.png))
 
