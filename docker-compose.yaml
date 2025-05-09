@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: movieuser
+      POSTGRES_PASSWORD: moviepass
+      POSTGRES_DB: moviedb
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - movie-network
+
+  app:
+    build: .
+    ports:
+      - "8090:8090"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/moviedb
+      SPRING_DATASOURCE_USERNAME: movieuser
+      SPRING_DATASOURCE_PASSWORD: moviepass
+    networks:
+      - movie-network
+
+volumes:
+  db-data: {}
+
+networks:
+  movie-network:

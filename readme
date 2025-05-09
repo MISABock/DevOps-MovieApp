@@ -36,3 +36,28 @@ in dieser Klasse wird ein Objekt Movie erstellt mit den Attributen ID und Titel
 
 
 
+Containers
+
+Um das backend in einem Container laufen zu lassen, habe ich zuerst die Datei docker-compose.yaml und ein Dockerfile erstellt.
+
+- [Dockerfile](Dockerfile): Damit habe ich das Docker-Image erstellt mir meiner Env und Conf.
+- [docker-compose](docker-compose.yaml): Damit die Container und deren Beziehung zu einander definiert. Sql & movieApp
+
+damit die Filme auch persistiert werden können, habe ich mich entschieden auch einen sql Container zu erstellen.
+(![sqlAndMovieAppContainer](images/sqlAndMovieAppContainer.png))
+
+
+Ich habe die App noch so erweitetert, dass ich die DB, die Movie Liste, auch befüllen kann. Hier eine kuzre Demo mit Postman.
+
+zuerst die leere Liste
+(![emptyList](images/emptyList.png))
+
+Hier übergebe ich den Film an die Liste: Film bockmic1
+(![PostmanAddingFilm](images/PostmanAddingFilm.png))
+
+Hier das Resulat:
+(![PostmanFilmResult](images/PostmanFilmResult.png))
+(![FilmAdded](images/FilmAdded.png))
+
+
+

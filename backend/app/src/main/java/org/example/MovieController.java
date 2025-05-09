@@ -1,6 +1,5 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,25 +16,24 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 public class MovieController {
 
-    private final List<Movie> movieList = new ArrayList<>();
-    private Long nextId = 1L;
+    private final MovieService movieService;
+
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
 
     @GetMapping
     public List<Movie> getMovies() {
-        return movieList;
+        return movieService.getAll();
     }
 
     @PostMapping
     public Movie addMovie(@RequestBody Movie movie) {
-        movie.setId(nextId++);
-        movieList.add(movie);
-        return movie;
+        return movieService.add(movie);
     }
 
     @DeleteMapping("/{id}")
     public void deleteMovie(@PathVariable Long id) {
-        movieList.removeIf(m -> m.getId().equals(id));
+        movieService.delete(id);
     }
-
-
 }
