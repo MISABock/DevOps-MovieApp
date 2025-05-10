@@ -34,13 +34,6 @@ bootJar {
 tasks.named('test') {
     useJUnitPlatform()
 }
-test {
-    useJUnitPlatform() // wichtig für JUnit 5
-    reports {
-        junitXml.required = true
-        html.required = true
-    }
-}
 
 
 // JaCoCo Konfiguration (minimale Anpassung)

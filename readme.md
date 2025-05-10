@@ -91,3 +91,5 @@ Als nächstes habe ich Junit Test und JaCoCo Reports im Jenkins integriert: Auch
 
 
 
+
+

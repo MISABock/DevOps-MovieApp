@@ -30,18 +30,35 @@ services:
     container_name: jenkins
     ports:
       - "9088:8080"
-      - "50001:50000" # Jenkins Master-Agent connection
+      - "50001:50000"
     volumes:
       - jenkins-data:/var/jenkins_home
     environment:
-      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false # Disables the initial setup wizard
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
     networks:
       - movie-network
     restart: always
 
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube-new
+    ports:
+      - "9005:9000"
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-logs:/opt/sonarqube/logs
+      - sonarqube-extensions:/opt/sonarqube/extensions
+    networks:
+      - movie-network
+
 volumes:
   db-data: {}
   jenkins-data: {}
+  sonarqube-data: {}
+  sonarqube-logs: {}
+  sonarqube-extensions: {}
 
 networks:
   movie-network:
