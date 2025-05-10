@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.0'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'jacoco'  // Füge das JaCoCo Plugin hinzu
 }
 
 group = 'org.example'
@@ -24,37 +25,33 @@ dependencies {
     implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
     runtimeOnly 'org.postgresql:postgresql' 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    
-    // JaCoCo Plugin hinzufügen
-    testImplementation 'org.jacoco:org.jacoco.core:0.8.8'  // oder eine neuere Version
 }
 
 bootJar {
     archiveFileName = 'app.jar'
 }
 
-// Disable JaCoCo temporarily if needed
-tasks.withType(JacocoReport) {
-    enabled = false
-}
-
-// Tasks named 'test' should use JUnit Platform
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
-// JaCoCo Report Settings (optional)
-// You can re-enable JaCoCo report generation if necessary
+// JaCoCo Konfiguration
 jacoco {
-    toolVersion = "0.8.8" // Ensure you have the latest version
+    toolVersion = '0.8.8'  // Stelle sicher, dass du die neueste JaCoCo-Version verwendest
     reportsDir = file("$buildDir/reports/jacoco")
 }
 
-test {
+// Aktiviere JaCoCo für Tests
+tasks.withType(Test) {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport // Veranlasst, dass der JaCoCo-Testbericht nach den Tests erstellt wird
+}
 
-    // Ensure that JaCoCo can generate code coverage reports
-    jacoco {
-        enabled = true
+// Konfiguration des JaCoCo Testberichts
+jacocoTestReport {
+    dependsOn test // Sicherstellen, dass die Tests vor der Berichterstellung ausgeführt werden
+    reports {
+        xml.enabled = true
+        html.enabled = true
     }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
 }
