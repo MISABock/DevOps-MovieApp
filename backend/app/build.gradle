@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.0'
     id 'io.spring.dependency-management' version '1.1.4'
-    id 'jacoco'  // JaCoCo Plugin hinzufügen
+    id 'jacoco' // JaCoCo Plugin hinzufügen
 }
 
 group = 'org.example'
@@ -10,7 +10,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(21) // Sicherstellen, dass Java 21 verwendet wird
     }
 }
 
@@ -31,25 +31,20 @@ bootJar {
     archiveFileName = 'app.jar'
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
 // JaCoCo Konfiguration
 jacoco {
-    toolVersion = "0.8.8"  // Verwende die neueste JaCoCo-Version
+    toolVersion = '0.8.8' // JaCoCo Version festlegen
+}
+
+tasks.named('test') {
+    useJUnitPlatform() // Nutzt JUnit-Plattform
+    finalizedBy jacocoTestReport // Generiert den JaCoCo-Bericht nach den Tests
 }
 
 jacocoTestReport {
-    dependsOn test // Test muss zuerst laufen, um Coverage zu generieren
+    dependsOn test // Sicherstellen, dass Test-Task zuerst ausgeführt wird
     reports {
         xml.enabled = true  // XML-Bericht aktivieren
         html.enabled = true // HTML-Bericht aktivieren
     }
-}
-
-// Konfiguriere Tests so, dass sie nach Abschluss automatisch den JaCoCo-Bericht erzeugen
-test {
-    useJUnitPlatform()  // Sicherstellen, dass JUnit verwendet wird
-    finalizedBy jacocoTestReport  // Nach den Tests den JaCoCo-Bericht erzeugen
 }
