@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Test Output') {
+        stage('Debug') {
             steps {
-                echo 'Jenkinsfile is executing correctly!'
+                echo '✅ Jenkinsfile läuft!'
             }
         }
     }
