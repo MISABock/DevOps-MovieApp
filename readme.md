@@ -60,6 +60,13 @@ Hier das Resulat:
 (![FilmAdded](images/FilmAdded.png))
 
 
+Auf Localhost:8090 läuft das Frontend via Docker
+(![frontendDocker8090](images/frontendDocker8090.png))
+(![DockerContainer](images/DockerContainer.png))
+
+
+
+
 
 
 
