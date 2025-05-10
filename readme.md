@@ -64,8 +64,14 @@ Auf Localhost:8090 läuft das Frontend via Docker
 (![frontendDocker8090](images/frontendDocker8090.png))
 (![DockerContainer](images/DockerContainer.png))
 
+Als nächstes habe ich Jenkins in meinem Dockerfile hinzugefügt um Jenkins über einen Docker Container auf localhost:9088 laufen zu lassen.
+(![JenkinsDocker](images/JenkinsDocker.png))
+(![Jenkins9088](images/Jenkins9088.png))
+GithubToken
 
+Alds nächstes habe ich einen neuen Freestyle-Job erstellt, konfiguriert und Jenkins Plugins installiert .
 
+(![GithubToken](images/GithubToken.png))
 
 
 

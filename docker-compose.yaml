@@ -25,8 +25,24 @@ services:
     networks:
       - movie-network
 
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    ports:
+      - "9088:8080"
+      - "50001:50000" # Jenkins Master-Agent connection
+    volumes:
+      - jenkins-data:/var/jenkins_home
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false # Disables the initial setup wizard
+    networks:
+      - movie-network
+    restart: always
+
 volumes:
   db-data: {}
+  jenkins-data: {}
 
 networks:
   movie-network:
+    driver: bridge
