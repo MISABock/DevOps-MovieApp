@@ -73,6 +73,13 @@ Als nächstes habe ich einen neuen Freestyle-Job erstellt, konfiguriert und Jenk
 (![MovieAppRunningJenkinsJob](images/MovieAppRunningJenkinsJob.png))
 (![WorkspaceMovieApp](images/WorkspaceMovieApp.png))
 
+NodeJS hinzugefügt
+(![NodeJSAdded](images/NodeJSAdded.png))
+
+Als nächstes habe ich Junit Test und JaCoCo Reports im Jenkins integriert: Auch wenn keine Tests für das Projekt existieren.
+(![JunitTests](images/JunitTests.png))
+(![JacocoReport](images/JacocoReport.png))
+
 
 
 
