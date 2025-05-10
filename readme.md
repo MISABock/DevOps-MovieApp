@@ -69,9 +69,11 @@ Als nächstes habe ich Jenkins in meinem Dockerfile hinzugefügt um Jenkins übe
 (![Jenkins9088](images/Jenkins9088.png))
 GithubToken
 
-Alds nächstes habe ich einen neuen Freestyle-Job erstellt, konfiguriert und Jenkins Plugins installiert .
+Als nächstes habe ich einen neuen Freestyle-Job erstellt, konfiguriert und Jenkins Plugins installiert .
+(![MovieAppRunningJenkinsJob](images/MovieAppRunningJenkinsJob.png))
+(![WorkspaceMovieApp](images/WorkspaceMovieApp.png))
 
-(![GithubToken](images/GithubToken.png))
+
 
 
 
