@@ -6,6 +6,13 @@ pipeline {
     }
 
     stages {
+                stage('Checkout code') {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'Github',
+                    url: 'https://github.com/MISABock/DevOps-MovieApp.git'
+            }
+        
         stage('Build & Test') {
             steps {
                 dir('backend') {
