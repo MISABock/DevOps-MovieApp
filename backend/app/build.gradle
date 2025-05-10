@@ -10,7 +10,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -34,7 +34,6 @@ bootJar {
 // JaCoCo Konfiguration
 jacoco {
     toolVersion = '0.8.8'  // Stelle sicher, dass du die neueste JaCoCo-Version verwendest
-    reportsDir = file("$buildDir/reports/jacoco")
 }
 
 // Aktiviere JaCoCo für Tests
@@ -43,12 +42,14 @@ tasks.withType(Test) {
     finalizedBy jacocoTestReport // Veranlasst, dass der JaCoCo-Testbericht nach den Tests erstellt wird
 }
 
-// Konfiguration des JaCoCo Testberichts
+// JaCoCo Test Report Konfiguration
 jacocoTestReport {
     dependsOn test // Sicherstellen, dass die Tests vor der Berichterstellung ausgeführt werden
     reports {
         xml.enabled = true
         html.enabled = true
+        html.destination file("$buildDir/reports/jacoco/test/html")  // Definiert den Zielpfad für den HTML-Bericht
+        xml.destination file("$buildDir/reports/jacoco/test/xml")    // Definiert den Zielpfad für den XML-Bericht
     }
 }
 
