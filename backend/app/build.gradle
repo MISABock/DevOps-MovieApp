@@ -45,14 +45,10 @@ test {
 jacocoTestReport {
     dependsOn test // Stelle sicher, dass der Report nach den Tests erstellt wird
     reports {
-        // XML- und HTML-Berichte aktivieren
-        xml {
-            enabled = true
-            destination = file("$buildDir/reports/jacoco/test/jacocoTestReport.xml")
-        }
-        html {
-            enabled = true
-            destination = file("$buildDir/reports/jacoco/test/html")
-        }
+        xml.required = true // XML-Bericht aktivieren
+        html.required = true // HTML-Bericht aktivieren
+
+        xml.destination file("$buildDir/reports/jacoco/test/jacocoTestReport.xml")
+        html.destination file("$buildDir/reports/jacoco/test/html")
     }
 }
