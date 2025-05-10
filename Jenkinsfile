@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Code wurde bereits durch Jenkins aus dem Repository ausgecheckt.'
-            }
-        }
-
         stage('Build & Test') {
             steps {
                 dir('backend') {
