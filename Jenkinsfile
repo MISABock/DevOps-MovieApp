@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+
+    environment {
+        SONAR_HOST_URL = 'http://localhost:9005'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build & Test') {
+            steps {
+                dir('backend') {
+                    sh 'chmod +x ./gradlew'
+                    sh './gradlew clean test jacocoTestReport'
+                }
+                junit testResults: '**/test-results/test/*.xml'
+            }
+        }
+
+        stage('Lint Frontend') {
+            steps {
+                nodejs('NodeJS 22.11.0') {
+                    dir('frontend') {
+                        sh 'npm install'
+                        sh 'npm run lint:html'
+                    }
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withCredentials([string(credentialsId: 'Sonarqube-movieApp', variable: 'TOKEN')]) {
+                    dir('backend') {
+                        sh """
+                        ./gradlew sonar \
+                          -Dsonar.projectKey=movieApp-backend \
+                          -Dsonar.projectName="movieApp Backend" \
+                          -Dsonar.host.url=$SONAR_HOST_URL \
+                          -Dsonar.token=$TOKEN
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh '''
+                export DOCKER_HOST=tcp://host.docker.internal:2375
+                docker build -t movieApp-backend .
+                '''
+            }
+        }
+    }
+}
