@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                echo 'Code wurde bereits durch Jenkins aus dem Repository ausgecheckt.'
             }
         }
 
