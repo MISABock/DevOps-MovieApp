@@ -37,5 +37,5 @@ tasks.named('test') {
 
 // JaCoCo Konfiguration (minimale Anpassung)
 jacoco {
-    toolVersion = '0.8.8'  // JaCoCo Version
+    toolVersion = '0.8.11'  // JaCoCo Version
 }
