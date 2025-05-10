@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.0'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'jacoco'  
 }
 
 group = 'org.example'
@@ -22,7 +23,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
-    runtimeOnly 'org.postgresql:postgresql' 
+    runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -30,6 +31,22 @@ bootJar {
     archiveFileName = 'app.jar'
 }
 
-tasks.named('test') {
+// JaCoCo Konfiguration
+jacoco {
+    toolVersion = '0.8.7' // Stelle sicher, dass du die neueste Version verwendest
+}
+
+test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport // Nach den Tests den JaCoCo-Bericht erstellen
+}
+
+// JaCoCo Testbericht erstellen
+jacocoTestReport {
+    dependsOn test // Stelle sicher, dass der Report nach den Tests erstellt wird
+    reports {
+        xml.enabled true // XML-Bericht aktivieren (für Jenkins etc.)
+        html.enabled true // HTML-Bericht aktivieren (für lokale Ansicht)
+        csv.enabled false // CSV-Bericht deaktivieren, falls nicht benötigt
+    }
 }
