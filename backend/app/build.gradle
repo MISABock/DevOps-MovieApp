@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.0'
     id 'io.spring.dependency-management' version '1.1.4'
-    id 'jacoco'  // JaCoCo Plugin
+    id 'jacoco'  // JaCoCo Plugin hinzugefügt
 }
 
 group = 'org.example'
@@ -31,24 +31,11 @@ bootJar {
     archiveFileName = 'app.jar'
 }
 
-// JaCoCo Konfiguration
-jacoco {
-    toolVersion = '0.8.8'  // Stelle sicher, dass du die neueste JaCoCo-Version verwendest
-}
-
-// Testbericht-Generierung nach den Tests
-tasks.test {
-    finalizedBy jacocoTestReport // Dieser Befehl sorgt dafür, dass der JaCoCo-Bericht nach den Tests erzeugt wird
-}
-
-jacocoTestReport {
-    dependsOn test // Testausführung sicherstellen
-    reports {
-        html.enabled = true
-        xml.enabled = true
-    }
-}
-
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+// JaCoCo Konfiguration (minimale Anpassung)
+jacoco {
+    toolVersion = '0.8.8'  // JaCoCo Version
 }
