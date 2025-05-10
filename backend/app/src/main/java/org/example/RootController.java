@@ -1,13 +1,13 @@
 package org.example;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class RootController {
 
     @GetMapping("/")
-    public String hello() {
-        return "Willkommen zur MovieApp!";
+    public String index() {
+        return "forward:/index.html";
     }
 }

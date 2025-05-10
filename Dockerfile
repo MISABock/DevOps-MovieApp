@@ -10,12 +10,12 @@ WORKDIR /usr/src/app
 # Projektdateien kopieren
 COPY . .
 
-# Frontend bauen und in das Spring Boot Static-Verzeichnis legen
+# Frontend bauen und ins richtige Spring Boot Static-Verzeichnis legen
 RUN cd frontend \
   && npm install \
   && npm run build \
-  && mkdir -p backend/app/src/main/resources/static/app \
-  && cp -r build/. backend/app/src/main/resources/static/app/
+  && mkdir -p backend/app/src/main/resources/static \
+  && cp -r build/. backend/app/src/main/resources/static/
 
 # Backend bauen
 RUN cd backend \
