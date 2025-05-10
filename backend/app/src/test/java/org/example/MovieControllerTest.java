@@ -4,10 +4,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock; // List importieren
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class MovieControllerTest {
 
     @Mock
@@ -32,3 +35,4 @@ public class MovieControllerTest {
         assertEquals("Inception", response.get(0).getTitle()); // Überprüfen des Filmtitels
     }
 }
+
