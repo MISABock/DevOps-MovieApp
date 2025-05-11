@@ -2,7 +2,10 @@ pipeline {
     agent any
 
     environment {
-        SONAR_HOST_URL = 'http://sonarqube:9005'  // <--- angepasst!
+        // Zugriff auf SonarQube vom Jenkins-Container aus
+        SONAR_HOST_URL = 'http://host.docker.internal:9005'
+        // Zugriff auf Docker-Daemon auf dem Host
+        DOCKER_HOST = 'tcp://host.docker.internal:2375'
     }
 
     stages {
@@ -53,13 +56,14 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'Sonarqube-movieApp', variable: 'TOKEN')]) {
                     dir('backend') {
-                        sh """
-                        ./gradlew sonar \\
-                          -Dsonar.projectKey=movieApp-backend \\
-                          -Dsonar.projectName="movieApp Backend" \\
-                          -Dsonar.host.url=$SONAR_HOST_URL \\
+                        // Achtung: kein Groovy-String-Interpolation hier!
+                        sh '''#!/bin/bash
+                        ./gradlew sonar \
+                          -Dsonar.projectKey=movieApp-backend \
+                          -Dsonar.projectName="movieApp Backend" \
+                          -Dsonar.host.url=$SONAR_HOST_URL \
                           -Dsonar.token=$TOKEN
-                        """
+                        '''
                     }
                 }
             }
@@ -68,7 +72,6 @@ pipeline {
         stage('Docker Build') {
             steps {
                 sh '''
-                export DOCKER_HOST=tcp://host.docker.internal:2375
                 docker build -t movieApp-backend .
                 '''
             }
