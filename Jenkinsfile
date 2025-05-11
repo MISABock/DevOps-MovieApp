@@ -56,7 +56,6 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'Sonarqube-movieApp', variable: 'TOKEN')]) {
                     dir('backend') {
-                        // Achtung: kein Groovy-String-Interpolation hier!
                         sh '''#!/bin/bash
                         ./gradlew sonar \
                           -Dsonar.projectKey=movieApp-backend \
@@ -69,11 +68,9 @@ pipeline {
             }
         }
 
-        stage('Docker Build') {
+        stage('Docker Build (disabled)') {
             steps {
-                sh '''
-                docker build -t movieApp-backend .
-                '''
+                echo 'Docker build skipped (no Docker CLI in Jenkins container)'
             }
         }
     }
