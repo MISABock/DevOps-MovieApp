@@ -6,6 +6,28 @@ pipeline {
     }
 
     stages {
+        stage('Debug: pwd + ls') {
+            steps {
+                sh 'pwd'
+                sh 'ls -la'
+            }
+        }
+
+        stage('Checkout full repo') {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'Github',
+                    url: 'https://github.com/MISABock/DevOps-MovieApp.git'
+            }
+        }
+
+        stage('Debug: repo contents') {
+            steps {
+                sh 'ls -la'
+                sh 'ls -la backend || true'
+            }
+        }
+
         stage('Build & Test') {
             steps {
                 dir('backend') {
@@ -32,10 +54,10 @@ pipeline {
                 withCredentials([string(credentialsId: 'Sonarqube-movieApp', variable: 'TOKEN')]) {
                     dir('backend') {
                         sh """
-                        ./gradlew sonar \
-                          -Dsonar.projectKey=movieApp-backend \
-                          -Dsonar.projectName="movieApp Backend" \
-                          -Dsonar.host.url=$SONAR_HOST_URL \
+                        ./gradlew sonar \\
+                          -Dsonar.projectKey=movieApp-backend \\
+                          -Dsonar.projectName="movieApp Backend" \\
+                          -Dsonar.host.url=$SONAR_HOST_URL \\
                           -Dsonar.token=$TOKEN
                         """
                     }
