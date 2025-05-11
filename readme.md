@@ -76,10 +76,13 @@ Als nächstes habe ich einen neuen Freestyle-Job erstellt, konfiguriert und Jenk
 NodeJS hinzugefügt
 (![NodeJSAdded](images/NodeJSAdded.png))
 
-Als nächstes habe ich Junit Test und JaCoCo Reports im Jenkins integriert: Auch wenn keine Tests für das Projekt existieren.
+Als nächstes habe ich Junit Test und JaCoCo Reports im Jenkins integriert:
 (![JunitTests](images/JunitTests.png))
 (![JacocoReport](images/JacocoReport.png))
 
+Hier noch SonarQube im Container
+(![SonarQubeContainer](images/SonarQubeContainer.png))
+(![DockerPsSonar](images/DockerPsSonar.png))
 
 
 

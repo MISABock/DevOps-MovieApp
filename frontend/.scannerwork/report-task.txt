@@ -1,0 +1,6 @@
+projectKey=movieApp-frontend
+serverUrl=http://localhost:9005
+serverVersion=25.5.0.107428
+dashboardUrl=http://localhost:9005/dashboard?id=movieApp-frontend
+ceTaskId=d38e392c-3160-4ab1-a755-725bdb9ddeee
+ceTaskUrl=http://localhost:9005/api/ce/task?id=d38e392c-3160-4ab1-a755-725bdb9ddeee

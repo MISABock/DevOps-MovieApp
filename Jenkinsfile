@@ -6,11 +6,9 @@ pipeline {
     }
 
     stages {
-        stage('Checkout full repo') {
+        stage('Checkout') {
             steps {
-                git branch: 'main',
-                    credentialsId: 'Github',
-                    url: 'https://github.com/MISABock/DevOps-MovieApp.git'
+                checkout scm
             }
         }
 

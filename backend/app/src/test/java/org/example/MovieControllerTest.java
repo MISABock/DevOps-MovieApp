@@ -4,35 +4,29 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock; // List importieren
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+@TestPropertySource("classpath:application-test.properties")
 public class MovieControllerTest {
 
-    @Mock
+    @Autowired
     private MovieService movieService;
 
-    @InjectMocks
+    @Autowired
     private MovieController movieController;
 
     @Test
     public void testGetMovies() {
-        // Erstellen eines Testmovie
+        // Beispielhafter Film wird vorher in einer Init-Methode oder per @Sql geladen – das ist hier nur symbolisch
         Movie movie = new Movie("Inception");
+        movieService.add(movie); // fügt Testdaten ein
 
-        // Mocking der Methode, die die Liste der Filme zurückgibt
-        Mockito.when(movieService.getAll()).thenReturn(List.of(movie));
+        List<Movie> response = movieController.getMovies();
 
-        // Ausführen der Methode getMovies im Controller
-        List<Movie> response = movieController.getMovies(); // Direkte Rückgabe der Liste
-
-        // Überprüfen des ersten Films in der Liste
-        assertEquals(1, response.size()); // Es gibt nur einen Film
-        assertEquals("Inception", response.get(0).getTitle()); // Überprüfen des Filmtitels
+        assertEquals(1, response.size());
+        assertEquals("Inception", response.get(0).getTitle());
     }
 }
-
