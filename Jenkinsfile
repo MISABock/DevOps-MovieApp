@@ -7,14 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('Debug: pwd + ls') {
-            steps {
-                sh 'pwd'
-                sh 'ls -la'
-            }
-        }
-
-        stage('Checkout full repo') {
+        stage('Checkout') {
             steps {
                 git branch: 'main',
                     credentialsId: 'Github',
@@ -22,20 +15,13 @@ pipeline {
             }
         }
 
-        stage('Debug: repo contents') {
-            steps {
-                sh 'ls -la'
-                sh 'ls -la backend || true'
-            }
-        }
-
-        stage('Build & Test') {
+        stage('Build & Test Backend') {
             steps {
                 dir('backend') {
                     sh 'chmod +x ./gradlew'
                     sh './gradlew clean test jacocoTestReport'
                 }
-                junit testResults: '**/test-results/test/*.xml'
+                junit '**/test-results/test/*.xml'
             }
         }
 
@@ -50,33 +36,28 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage('SonarQube') {
             steps {
                 withCredentials([string(credentialsId: 'Sonarqube-movieApp', variable: 'TOKEN')]) {
                     dir('backend') {
-                        sh '''#!/bin/bash
-                        ./gradlew sonar \
-                          -Dsonar.projectKey=movieApp-backend \
-                          -Dsonar.projectName="movieApp Backend" \
-                          -Dsonar.host.url=$SONAR_HOST_URL \
-                          -Dsonar.token=$TOKEN
+                        sh '''
+                            ./gradlew sonar \
+                            -Dsonar.projectKey=movieApp-backend \
+                            -Dsonar.projectName="movieApp Backend" \
+                            -Dsonar.host.url=$SONAR_HOST_URL \
+                            -Dsonar.token=$TOKEN
                         '''
                     }
                 }
             }
         }
 
-        stage('Docker Build') {
-            steps {
-                sh 'docker build -t michaelmisa/movieapp .'
-            }
-        }
-
-        stage('Docker Push') {
+        stage('Docker Build & Push') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'DockerHub-michaelmisa', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
-                        docker login -u $USERNAME -p $PASSWORD
+                        docker build -t michaelmisa/movieapp .
+                        echo $PASSWORD | docker login -u $USERNAME --password-stdin
                         docker push michaelmisa/movieapp
                     '''
                 }
