@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         SONAR_HOST_URL = 'http://host.docker.internal:9005'
-        DOCKER_HOST = 'tcp://host.docker.internal:2375'
     }
 
     stages {
@@ -68,7 +67,10 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t michaelmisa/movieapp .'
+                sh '''
+                    export DOCKER_HOST=tcp://host.docker.internal:2375
+                    docker build -t michaelmisa/movieapp .
+                '''
             }
         }
 
@@ -76,7 +78,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'DockerHub-michaelmisa', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
-                        docker login -u $USERNAME -p $PASSWORD
+                        export DOCKER_HOST=tcp://host.docker.internal:2375
+                        echo $PASSWORD | docker login -u $USERNAME --password-stdin
                         docker push michaelmisa/movieapp
                     '''
                 }
