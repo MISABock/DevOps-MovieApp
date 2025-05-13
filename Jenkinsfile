@@ -7,6 +7,15 @@ pipeline {
     }
 
     stages {
+        stage('Install Docker CLI') {
+    steps {
+        sh '''
+            apt-get update
+            apt-get install -y docker.io
+        '''
+    }
+}
+
         stage('Checkout') {
             steps {
                 git branch: 'main',
