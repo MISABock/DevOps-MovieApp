@@ -84,14 +84,37 @@ Hier noch SonarQube im Container
 (![SonarQubeContainer](images/SonarQubeContainer.png))
 (![DockerPsSonar](images/DockerPsSonar.png))
 
+Als nächstes habe ich die Pipeline erstellt und kofiguriert damit der Build über das Jenkinsfile auf Jenkins automatisch abläuft. Via Github-Repo
+[PipelineConfig](Logs/PipelineConfig.txt)
+[PipelineLogs](Logs/PipelineLogs.txt)
+
+Damit das ganze Projekt auf Container über Jenkins läuft, habe ich ein neues Freestyle-Projekt erstellt und das Docker Build Plugin hinzugefügt.
+[DockerBuildPlugin](images/DockerBuildPlugin.png)
+[dockerBuildJob](images/dockerBuildJob.png)
+[2375Check](images/2375Check.png)
 
 
+Als nächstes habe ich das Projekt so konfiguriert, dass es ein Image von meinem Dockerfile im movieApp-Projekt erstellt.
+[DockerImageLogs](Logs/DockerImageLogs.txt)
+[movieAppImageLocal](images/movieAppImageLocal.png)
+[CreatingImageOnJenkins](images/CreatingImageOnJenkins.png)
 
 
+Als nächstes habe ich das moveAppDockerDeploy-Projekt gestartet damit Jenkins-Build immer Container aus dem  Image startet. 
+Dabei habe ich definiert, dass beim Build jedesmal der alte Container zuerst entfernt wird.
+[DockerDeployProject](images/DockerDeployProject.png)
 
+Dannach soll direkt ein neuer Container gebaut werden. Im gleichen Netzwerk und definiertem Port-Binding
+[createNewContainer](images/createNewContainer.png)
+[StartDockerContainerMovieApp](images/StartDockerContainerMovieApp.png)
 
+Danach habe ich noch den Build des gesamt Projektes so definiert, dass der Prozess immer direkt nach dem movieAppDockerBuild getriggered werden soll.
+[BuildingDockerBuild](images/BuildingDockerBuild.png)
+[TriggeredByBuildProcess](images/TriggeredByBuildProcess.png)
 
-
+Als nächstes habe ich einen Access Token auf Docker Hub kreiirt, damit ich das Docker Image auf Docker-Hub uploaden kann. Dann auf Jenkins unter Credentials den Token hinzugefügt.
+[DockerhubToken](images/DockerhubToken.png)
+[dockerHubTokenToJenkins](images/dockerHubTokenToJenkins.png)
 
 
 

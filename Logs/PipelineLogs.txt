@@ -1,0 +1,251 @@
+Started by user unknown or anonymous
+Obtained Jenkinsfile from git https://github.com/MISABock/DevOps-MovieApp.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/test-pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential Github
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/test-pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/MISABock/DevOps-MovieApp.git # timeout=10
+Fetching upstream changes from https://github.com/MISABock/DevOps-MovieApp.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://github.com/MISABock/DevOps-MovieApp.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 1924f97ee271b8697b3fdedef2f10410fb446f78 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 1924f97ee271b8697b3fdedef2f10410fb446f78 # timeout=10
+Commit message: "U"
+ > git rev-list --no-walk eebaeab2a70c627015c2d613ed1dbd726501d45f # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Debug: pwd + ls)
+[Pipeline] sh
++ pwd
+/var/jenkins_home/workspace/test-pipeline
+[Pipeline] sh
++ ls -la
+total 56
+drwxr-xr-x 10 jenkins jenkins 4096 May 11 17:38 .
+drwxr-xr-x  8 jenkins jenkins 4096 May 11 17:16 ..
+drwxr-xr-x  8 jenkins jenkins 4096 May 11 17:38 .git
+drwxr-xr-x  2 jenkins jenkins 4096 May 11 17:19 .scannerwork
+-rw-r--r--  1 jenkins jenkins  672 May 11 17:19 Dockerfile
+-rw-r--r--  1 jenkins jenkins 2191 May 11 17:38 Jenkinsfile
+drwxr-xr-x  7 jenkins jenkins 4096 May 11 17:38 backend
+drwxr-xr-x  2 jenkins jenkins 4096 May 11 17:37 backend@tmp
+-rw-r--r--  1 jenkins jenkins 1365 May 11 17:19 docker-compose.yaml
+drwxr-xr-x  7 jenkins jenkins 4096 May 11 17:38 frontend
+drwxr-xr-x  2 jenkins jenkins 4096 May 11 17:37 frontend@tmp
+drwxr-xr-x  2 jenkins jenkins 4096 May 11 17:19 images
+-rw-r--r--  1 jenkins jenkins 3175 May 11 17:19 readme.md
+drwxr-xr-x  2 jenkins jenkins 4096 May 11 17:19 videos
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Checkout full repo)
+[Pipeline] git
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential Github
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/test-pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/MISABock/DevOps-MovieApp.git # timeout=10
+Fetching upstream changes from https://github.com/MISABock/DevOps-MovieApp.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://github.com/MISABock/DevOps-MovieApp.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 1924f97ee271b8697b3fdedef2f10410fb446f78 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 1924f97ee271b8697b3fdedef2f10410fb446f78 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D main # timeout=10
+ > git checkout -b main 1924f97ee271b8697b3fdedef2f10410fb446f78 # timeout=10
+Commit message: "U"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Debug: repo contents)
+[Pipeline] sh
++ ls -la
+total 56
+drwxr-xr-x 10 jenkins jenkins 4096 May 11 17:38 .
+drwxr-xr-x  8 jenkins jenkins 4096 May 11 17:16 ..
+drwxr-xr-x  8 jenkins jenkins 4096 May 11 17:38 .git
+drwxr-xr-x  2 jenkins jenkins 4096 May 11 17:19 .scannerwork
+-rw-r--r--  1 jenkins jenkins  672 May 11 17:19 Dockerfile
+-rw-r--r--  1 jenkins jenkins 2191 May 11 17:38 Jenkinsfile
+drwxr-xr-x  7 jenkins jenkins 4096 May 11 17:38 backend
+drwxr-xr-x  2 jenkins jenkins 4096 May 11 17:37 backend@tmp
+-rw-r--r--  1 jenkins jenkins 1365 May 11 17:19 docker-compose.yaml
+drwxr-xr-x  7 jenkins jenkins 4096 May 11 17:38 frontend
+drwxr-xr-x  2 jenkins jenkins 4096 May 11 17:37 frontend@tmp
+drwxr-xr-x  2 jenkins jenkins 4096 May 11 17:19 images
+-rw-r--r--  1 jenkins jenkins 3175 May 11 17:19 readme.md
+drwxr-xr-x  2 jenkins jenkins 4096 May 11 17:19 videos
+[Pipeline] sh
++ ls -la backend
+total 60
+drwxr-xr-x  7 jenkins jenkins 4096 May 11 17:38 .
+drwxr-xr-x 10 jenkins jenkins 4096 May 11 17:38 ..
+-rw-r--r--  1 jenkins jenkins  278 May 11 17:19 .gitattributes
+-rw-r--r--  1 jenkins jenkins  103 May 11 17:19 .gitignore
+drwxr-xr-x  6 jenkins jenkins 4096 May 11 17:19 .gradle
+drwxr-xr-x  2 jenkins jenkins 4096 May 11 17:19 .scannerwork
+drwxr-xr-x  5 jenkins jenkins 4096 May 11 17:36 app
+drwxr-xr-x  3 jenkins jenkins 4096 May 11 17:20 build
+drwxr-xr-x  3 jenkins jenkins 4096 May 11 17:19 gradle
+-rw-r--r--  1 jenkins jenkins  194 May 11 17:19 gradle.properties
+-rw-r--r--  1 jenkins jenkins 8763 May 11 17:38 gradlew
+-rw-r--r--  1 jenkins jenkins 2966 May 11 17:19 gradlew.bat
+-rw-r--r--  1 jenkins jenkins  529 May 11 17:19 settings.gradle
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build & Test)
+[Pipeline] dir
+Running in /var/jenkins_home/workspace/test-pipeline/backend
+[Pipeline] {
+[Pipeline] sh
++ chmod +x ./gradlew
+[Pipeline] sh
++ ./gradlew clean test jacocoTestReport
+Starting a Gradle Daemon (subsequent builds will be faster)
+Reusing configuration cache.
+> Task :app:clean
+> Task :app:processTestResources
+> Task :app:processResources
+> Task :app:compileJava
+> Task :app:classes
+> Task :app:compileTestJava
+> Task :app:testClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+2025-05-11T17:39:03.219Z  INFO 1921 --- [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-11T17:39:03.220Z DEBUG 1921 --- [ionShutdownHook] org.hibernate.SQL                        : drop table if exists movie cascade 
+Hibernate: drop table if exists movie cascade 
+2025-05-11T17:39:03.228Z  INFO 1921 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T17:39:03.232Z  INFO 1921 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+> Task :app:test
+> Task :app:jacocoTestReport
+
+[Incubating] Problems report is available at: file:///var/jenkins_home/workspace/test-pipeline/backend/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.12/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 11s
+7 actionable tasks: 7 executed
+Configuration cache entry reused.
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] junit
+Recording test results
+[Checks API] No suitable checks publisher found.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Lint Frontend)
+[Pipeline] nodejs
+[Pipeline] {
+[Pipeline] dir
+Running in /var/jenkins_home/workspace/test-pipeline/frontend
+[Pipeline] {
+[Pipeline] sh
++ npm install
+
+up to date, audited 1387 packages in 3s
+
+272 packages are looking for funding
+  run `npm fund` for details
+
+12 vulnerabilities (4 moderate, 8 high)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[Pipeline] sh
++ npm run lint:html
+
+> frontend@0.1.0 lint:html
+> htmlhint '**/*.html'
+
+
+(node:2075) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Scanned 2 files, no errors found (11 ms).
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // nodejs
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (SonarQube Analysis)
+[Pipeline] withCredentials
+Masking supported pattern matches of $TOKEN
+[Pipeline] {
+[Pipeline] dir
+Running in /var/jenkins_home/workspace/test-pipeline/backend
+[Pipeline] {
+[Pipeline] sh
+Calculating task graph as no cached configuration is available for tasks: sonar
+
+> Configure project :app
+The 'sonarqube' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+The 'sonar' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+
+> Task :app:compileJava UP-TO-DATE
+> Task :app:processResources UP-TO-DATE
+> Task :app:classes UP-TO-DATE
+> Task :app:compileTestJava UP-TO-DATE
+> Task :app:sonar
+
+[Incubating] Problems report is available at: file:///var/jenkins_home/workspace/test-pipeline/backend/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.12/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 9s
+4 actionable tasks: 1 executed, 3 up-to-date
+Configuration cache entry discarded because incompatible task was found: 'task `:app:sonar` of type `org.sonarqube.gradle.SonarTask`'.
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Build (disabled))
+[Pipeline] echo
+Docker build skipped (no Docker CLI in Jenkins container)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

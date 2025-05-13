@@ -2,9 +2,7 @@ pipeline {
     agent any
 
     environment {
-        // Zugriff auf SonarQube vom Jenkins-Container aus
         SONAR_HOST_URL = 'http://host.docker.internal:9005'
-        // Zugriff auf Docker-Daemon auf dem Host
         DOCKER_HOST = 'tcp://host.docker.internal:2375'
     }
 
@@ -68,9 +66,24 @@ pipeline {
             }
         }
 
-        stage('Docker Build (disabled)') {
+        stage('Docker Build') {
             steps {
-                echo 'Docker build skipped (no Docker CLI in Jenkins container)'
+                sh '''
+                    docker build -t michaelmisa/movieapp .
+                '''
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'DockerHub-michaelmisa', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh '''
+                            docker login -u $USERNAME -p $PASSWORD
+                            docker push michaelmisa/movieapp
+                        '''
+                    }
+                }
             }
         }
     }
