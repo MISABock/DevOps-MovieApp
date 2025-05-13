@@ -3,19 +3,10 @@ pipeline {
 
     environment {
         SONAR_HOST_URL = 'http://host.docker.internal:9005'
+        DOCKER_HOST = 'tcp://host.docker.internal:2375'
     }
 
-
     stages {
-
-         stage('Install Docker CLI') {
-            steps {
-                sh '''
-                    apt-get update && \
-                    apt-get install -y docker.io
-                '''
-            }
-        }
         stage('Debug: pwd + ls') {
             steps {
                 sh 'pwd'
@@ -77,10 +68,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh '''
-                    export DOCKER_HOST=tcp://host.docker.internal:2375
-                    docker build -t michaelmisa/movieapp .
-                '''
+                sh 'docker build -t michaelmisa/movieapp .'
             }
         }
 
@@ -88,8 +76,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'DockerHub-michaelmisa', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
-                        export DOCKER_HOST=tcp://host.docker.internal:2375
-                        echo $PASSWORD | docker login -u $USERNAME --password-stdin
+                        docker login -u $USERNAME -p $PASSWORD
                         docker push michaelmisa/movieapp
                     '''
                 }
