@@ -68,25 +68,17 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                script {
-                    docker.image('docker:24.0.2-cli').inside('-e DOCKER_HOST=tcp://host.docker.internal:2375') {
-                        sh 'docker build -t michaelmisa/movieapp .'
-                    }
-                }
+                sh 'docker build -t michaelmisa/movieapp .'
             }
         }
 
         stage('Docker Push') {
             steps {
-                script {
-                    docker.image('docker:24.0.2-cli').inside('-e DOCKER_HOST=tcp://host.docker.internal:2375') {
-                        withCredentials([usernamePassword(credentialsId: 'DockerHub-michaelmisa', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                            sh '''
-                                docker login -u $USERNAME -p $PASSWORD
-                                docker push michaelmisa/movieapp
-                            '''
-                        }
-                    }
+                withCredentials([usernamePassword(credentialsId: 'DockerHub-michaelmisa', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh '''
+                        docker login -u $USERNAME -p $PASSWORD
+                        docker push michaelmisa/movieapp
+                    '''
                 }
             }
         }
