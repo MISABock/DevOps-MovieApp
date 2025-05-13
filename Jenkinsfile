@@ -5,16 +5,17 @@ pipeline {
         SONAR_HOST_URL = 'http://host.docker.internal:9005'
     }
 
-    stage('Install Docker CLI') {
-        steps {
-            sh '''
-                apt-get update && \
-                apt-get install -y docker.io
-            '''
-        }
-    }
 
     stages {
+
+         stage('Install Docker CLI') {
+            steps {
+                sh '''
+                    apt-get update && \
+                    apt-get install -y docker.io
+                '''
+            }
+        }
         stage('Debug: pwd + ls') {
             steps {
                 sh 'pwd'
