@@ -7,18 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Install Docker CLI (falls nicht vorhanden)') {
-            steps {
-                sh '''
-                    if ! command -v docker > /dev/null; then
-                        apt-get update && apt-get install -y docker.io
-                    else
-                        echo "Docker CLI already installed"
-                    fi
-                '''
-            }
-        }
-
         stage('Debug: pwd + ls') {
             steps {
                 sh 'pwd'
@@ -80,21 +68,24 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh '''
-                    docker version
-                    docker build -t michaelmisa/movieapp .
-                '''
+                script {
+                    docker.image('docker:24.0.2-cli').inside('-e DOCKER_HOST=tcp://host.docker.internal:2375') {
+                        sh 'docker build -t michaelmisa/movieapp .'
+                    }
+                }
             }
         }
 
         stage('Docker Push') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'DockerHub-michaelmisa', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        sh '''
-                            docker login -u $USERNAME -p $PASSWORD
-                            docker push michaelmisa/movieapp
-                        '''
+                    docker.image('docker:24.0.2-cli').inside('-e DOCKER_HOST=tcp://host.docker.internal:2375') {
+                        withCredentials([usernamePassword(credentialsId: 'DockerHub-michaelmisa', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                            sh '''
+                                docker login -u $USERNAME -p $PASSWORD
+                                docker push michaelmisa/movieapp
+                            '''
+                        }
                     }
                 }
             }
