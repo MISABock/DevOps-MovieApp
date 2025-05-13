@@ -7,6 +7,18 @@ pipeline {
     }
 
     stages {
+        stage('Install Docker CLI (falls nicht vorhanden)') {
+            steps {
+                sh '''
+                    if ! command -v docker > /dev/null; then
+                        apt-get update && apt-get install -y docker.io
+                    else
+                        echo "Docker CLI already installed"
+                    fi
+                '''
+            }
+        }
+
         stage('Debug: pwd + ls') {
             steps {
                 sh 'pwd'
@@ -69,6 +81,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 sh '''
+                    docker version
                     docker build -t michaelmisa/movieapp .
                 '''
             }
