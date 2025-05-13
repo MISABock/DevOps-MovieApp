@@ -1,16 +1,26 @@
 FROM openjdk:21-jdk-slim
 
-# Node.js installieren
-RUN apt-get update && apt-get install -y curl \
-    && curl -sL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs
+# Docker CLI + Node.js installieren
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    ca-certificates \
+    apt-transport-https \
+    software-properties-common \
+    lsb-release \
+    sudo \
+    docker.io \
+ && curl -sL https://deb.nodesource.com/setup_20.x | bash - \
+ && apt-get install -y nodejs \
+ && apt-get clean
 
+# Arbeitsverzeichnis setzen
 WORKDIR /usr/src/app
 
 # Projektdateien kopieren
 COPY . .
 
-# Frontend bauen und ins richtige Spring Boot Static-Verzeichnis legen
+# Frontend bauen
 RUN cd frontend \
   && npm install \
   && npm run build \
@@ -22,7 +32,8 @@ RUN cd backend \
   && chmod +x gradlew \
   && ./gradlew bootJar
 
+# Port für Spring Boot App
 EXPOSE 8090
 
-# App starten
+# Startbefehl
 CMD ["java", "-jar", "/usr/src/app/backend/app/build/libs/app.jar"]

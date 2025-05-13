@@ -2,8 +2,9 @@ FROM jenkins/jenkins:lts
 
 USER root
 
-# Install docker CLI
-RUN apt-get update && apt-get install -y docker.io
+# Install Docker CLI
+RUN apt-get update && \
+    apt-get install -y docker.io && \
+    usermod -aG docker jenkins
 
-# Gebe Jenkins wieder Kontrolle
 USER jenkins
