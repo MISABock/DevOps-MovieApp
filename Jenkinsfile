@@ -55,11 +55,11 @@ pipeline {
                 withCredentials([string(credentialsId: 'Sonarqube-movieApp', variable: 'TOKEN')]) {
                     dir('backend') {
                         sh '''#!/bin/bash
-                        ./gradlew sonar \
-                          -Dsonar.projectKey=movieApp-backend \
-                          -Dsonar.projectName="movieApp Backend" \
-                          -Dsonar.host.url=$SONAR_HOST_URL \
-                          -Dsonar.token=$TOKEN
+                            ./gradlew sonar \
+                              -Dsonar.projectKey=movieApp-backend \
+                              -Dsonar.projectName="movieApp Backend" \
+                              -Dsonar.host.url=$SONAR_HOST_URL \
+                              -Dsonar.token=$TOKEN
                         '''
                     }
                 }
@@ -68,7 +68,11 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t michaelmisa/movieapp .'
+                sh '''
+                    echo ">> Docker Build gestartet via Docker Daemon auf tcp://host.docker.internal:2375"
+                    docker --version
+                    docker build -t michaelmisa/movieapp .
+                '''
             }
         }
 
@@ -76,7 +80,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'DockerHub-michaelmisa', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
-                        docker login -u $USERNAME -p $PASSWORD
+                        echo ">> Docker Login und Push"
+                        echo $PASSWORD | docker login -u $USERNAME --password-stdin
                         docker push michaelmisa/movieapp
                     '''
                 }
