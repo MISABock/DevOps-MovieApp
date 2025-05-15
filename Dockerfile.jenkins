@@ -3,8 +3,13 @@ FROM jenkins/jenkins:lts
 USER root
 
 # Install Docker CLI
-RUN apt-get update && \
-    apt-get install -y docker.io && \
-    usermod -aG docker jenkins
+RUN apt-get update && apt-get install -y docker.io
+
+# Optional: Node.js (für npm-basierte Linter)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs
+
+# Berechtigungen setzen
+RUN usermod -aG docker jenkins
 
 USER jenkins

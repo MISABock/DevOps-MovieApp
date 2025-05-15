@@ -26,7 +26,7 @@ services:
       - movie-network
 
   jenkins:
-    image: jenkins/jenkins:lts
+    image: custom-jenkins-with-docker
     container_name: jenkins
     ports:
       - "9088:8080"

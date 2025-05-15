@@ -1,0 +1,554 @@
+Started by user admin
+Obtained Jenkinsfile from git https://github.com/MISABock/DevOps-MovieApp.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Docker Agent-000036iegc3vk on Docker Cloud in /home/jenkins/workspace/Pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential GithubCred
+Cloning the remote Git repository
+Cloning repository https://github.com/MISABock/DevOps-MovieApp.git
+ > git init /home/jenkins/workspace/Pipeline # timeout=10
+Fetching upstream changes from https://github.com/MISABock/DevOps-MovieApp.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://github.com/MISABock/DevOps-MovieApp.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/MISABock/DevOps-MovieApp.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+Checking out Revision d348aab900530666a3beab4bdd67446e6a1cc0f2 (refs/remotes/origin/main)
+Commit message: "Update"
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f d348aab900530666a3beab4bdd67446e6a1cc0f2 # timeout=10
+ > git rev-list --no-walk d348aab900530666a3beab4bdd67446e6a1cc0f2 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Debug: pwd + ls)
+[Pipeline] sh
++ pwd
+/home/jenkins/workspace/Pipeline
+[Pipeline] sh
++ ls -la
+total 100
+drwxr-xr-x 9 jenkins jenkins  4096 May 15 08:09 .
+drwxr-xr-x 4 jenkins jenkins  4096 May 15 08:09 ..
+drwxr-xr-x 8 jenkins jenkins  4096 May 15 08:09 .git
+drwxr-xr-x 2 jenkins jenkins  4096 May 15 08:09 .scannerwork
+-rw-r--r-- 1 jenkins jenkins   845 May 15 08:09 Dockerfile
+-rw-r--r-- 1 jenkins jenkins   165 May 15 08:09 Dockerfile.jenkins
+-rw-r--r-- 1 jenkins jenkins  2752 May 15 08:09 Jenkinsfile
+drwxr-xr-x 2 jenkins jenkins  4096 May 15 08:09 Logs
+drwxr-xr-x 5 jenkins jenkins  4096 May 15 08:09 backend
+-rw-r--r-- 1 jenkins jenkins  1365 May 15 08:09 docker-compose.yaml
+drwxr-xr-x 6 jenkins jenkins  4096 May 15 08:09 frontend
+-rw-r--r-- 1 jenkins jenkins 40384 May 15 08:09 image.png
+drwxr-xr-x 2 jenkins jenkins  4096 May 15 08:09 images
+-rw-r--r-- 1 jenkins jenkins  5013 May 15 08:09 readme.md
+drwxr-xr-x 2 jenkins jenkins  4096 May 15 08:09 videos
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Checkout full repo)
+[Pipeline] git
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+Warning: CredentialId "Github" could not be found.
+Fetching changes from the remote Git repository
+Checking out Revision d348aab900530666a3beab4bdd67446e6a1cc0f2 (refs/remotes/origin/main)
+Commit message: "Update"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Debug: repo contents)
+[Pipeline] sh
++ ls -la
+total 100
+drwxr-xr-x 9 jenkins jenkins  4096 May 15 08:09 .
+drwxr-xr-x 4 jenkins jenkins  4096 May 15 08:09 ..
+drwxr-xr-x 8 jenkins jenkins  4096 May 15 08:09 .git
+drwxr-xr-x 2 jenkins jenkins  4096 May 15 08:09 .scannerwork
+-rw-r--r-- 1 jenkins jenkins   845 May 15 08:09 Dockerfile
+-rw-r--r-- 1 jenkins jenkins   165 May 15 08:09 Dockerfile.jenkins
+-rw-r--r-- 1 jenkins jenkins  2752 May 15 08:09 Jenkinsfile
+drwxr-xr-x 2 jenkins jenkins  4096 May 15 08:09 Logs
+drwxr-xr-x 5 jenkins jenkins  4096 May 15 08:09 backend
+-rw-r--r-- 1 jenkins jenkins  1365 May 15 08:09 docker-compose.yaml
+drwxr-xr-x 6 jenkins jenkins  4096 May 15 08:09 frontend
+-rw-r--r-- 1 jenkins jenkins 40384 May 15 08:09 image.png
+drwxr-xr-x 2 jenkins jenkins  4096 May 15 08:09 images
+-rw-r--r-- 1 jenkins jenkins  5013 May 15 08:09 readme.md
+drwxr-xr-x 2 jenkins jenkins  4096 May 15 08:09 videos
+[Pipeline] sh
+ > git rev-parse --resolve-git-dir /home/jenkins/workspace/Pipeline/.git # timeout=10
+ > git config remote.origin.url https://github.com/MISABock/DevOps-MovieApp.git # timeout=10
+Fetching upstream changes from https://github.com/MISABock/DevOps-MovieApp.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+ > git fetch --tags --force --progress -- https://github.com/MISABock/DevOps-MovieApp.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f d348aab900530666a3beab4bdd67446e6a1cc0f2 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b main d348aab900530666a3beab4bdd67446e6a1cc0f2 # timeout=10
++ ls -la backend
+total 52
+drwxr-xr-x 5 jenkins jenkins 4096 May 15 08:09 .
+drwxr-xr-x 9 jenkins jenkins 4096 May 15 08:09 ..
+-rw-r--r-- 1 jenkins jenkins  278 May 15 08:09 .gitattributes
+-rw-r--r-- 1 jenkins jenkins  103 May 15 08:09 .gitignore
+drwxr-xr-x 2 jenkins jenkins 4096 May 15 08:09 .scannerwork
+drwxr-xr-x 4 jenkins jenkins 4096 May 15 08:09 app
+drwxr-xr-x 3 jenkins jenkins 4096 May 15 08:09 gradle
+-rw-r--r-- 1 jenkins jenkins  194 May 15 08:09 gradle.properties
+-rw-r--r-- 1 jenkins jenkins 8763 May 15 08:09 gradlew
+-rw-r--r-- 1 jenkins jenkins 2966 May 15 08:09 gradlew.bat
+-rw-r--r-- 1 jenkins jenkins  529 May 15 08:09 settings.gradle
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build & Test)
+[Pipeline] dir
+Running in /home/jenkins/workspace/Pipeline/backend
+[Pipeline] {
+[Pipeline] sh
++ chmod +x ./gradlew
+[Pipeline] sh
++ ./gradlew clean test jacocoTestReport
+Downloading https://services.gradle.org/distributions/gradle-8.12-bin.zip
+.............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%.............100%
+
+Welcome to Gradle 8.12!
+
+Here are the highlights of this release:
+ - Enhanced error and warning reporting with the Problems API
+ - File-system watching support on Alpine Linux
+ - Build and test Swift 6 libraries and apps
+
+For more details see https://docs.gradle.org/8.12/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+Calculating task graph as no cached configuration is available for tasks: clean test jacocoTestReport
+
+> Configure project :app
+The 'sonarqube' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+The 'sonar' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+
+> Task :app:clean UP-TO-DATE
+> Task :app:processResources
+> Task :app:processTestResources
+> Task :app:compileJava
+> Task :app:classes
+> Task :app:compileTestJava
+> Task :app:testClasses
+2025-05-15T08:10:33.546Z  INFO 641 --- [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T08:10:33.601Z DEBUG 641 --- [ionShutdownHook] org.hibernate.SQL                        : drop table if exists movie cascade 
+Hibernate: drop table if exists movie cascade 
+2025-05-15T08:10:33.605Z  INFO 641 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-15T08:10:33.608Z  INFO 641 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+> Task :app:test
+> Task :app:jacocoTestReport
+
+[Incubating] Problems report is available at: file:///home/jenkins/workspace/Pipeline/backend/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.12/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 41s
+7 actionable tasks: 6 executed, 1 up-to-date
+Configuration cache entry stored.
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] junit
+Recording test results
+[Checks API] No suitable checks publisher found.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Lint Frontend)
+[Pipeline] nodejs
+Installing NodeJS from /var/jenkins_home/caches/nodejs/LINUX/amd64/22.11.0.tar.gz to /home/jenkins/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/NodeJS_22.11.0 on Docker Agent-000036iegc3vk on Docker Cloud
+[Pipeline] {
+[Pipeline] dir
+Running in /home/jenkins/workspace/Pipeline/frontend
+[Pipeline] {
+[Pipeline] sh
++ npm install
+npm warn deprecated har-validator@5.1.5: this library is no longer supported
+npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+npm warn deprecated q@1.5.1: You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+npm warn deprecated
+npm warn deprecated (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
+npm warn deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+npm warn deprecated workbox-google-analytics@6.6.0: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
+npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated domexception@2.0.1: Use your platform's native DOMException instead
+npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+npm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+npm warn deprecated @babel/plugin-proposal-private-methods@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
+npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+npm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+npm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+npm warn deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
+npm warn deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm warn deprecated @babel/plugin-proposal-private-property-in-object@7.21.11: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
+npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 1386 packages, and audited 1387 packages in 43s
+
+272 packages are looking for funding
+  run `npm fund` for details
+
+12 vulnerabilities (4 moderate, 8 high)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[Pipeline] sh
++ npm run lint:html
+
+> frontend@0.1.0 lint:html
+> htmlhint '**/*.html'
+
+
+(node:822) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Scanned 2 files, no errors found (20 ms).
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // nodejs
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (SonarQube Analysis)
+[Pipeline] withCredentials
+Masking supported pattern matches of $TOKEN
+[Pipeline] {
+[Pipeline] dir
+Running in /home/jenkins/workspace/Pipeline/backend
+[Pipeline] {
+[Pipeline] sh
+Calculating task graph as no cached configuration is available for tasks: sonar
+
+> Configure project :app
+The 'sonarqube' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+The 'sonar' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+
+> Task :app:compileJava UP-TO-DATE
+> Task :app:processResources UP-TO-DATE
+> Task :app:classes UP-TO-DATE
+> Task :app:compileTestJava UP-TO-DATE
+> Task :app:sonar
+
+[Incubating] Problems report is available at: file:///home/jenkins/workspace/Pipeline/backend/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.12/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 8s
+4 actionable tasks: 1 executed, 3 up-to-date
+Configuration cache entry discarded because incompatible task was found: 'task `:app:sonar` of type `org.sonarqube.gradle.SonarTask`'.
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Build)
+[Pipeline] sh
++ echo >> Docker Build gestartet via Docker Daemon auf tcp://host.docker.internal:2375
+>> Docker Build gestartet via Docker Daemon auf tcp://host.docker.internal:2375
++ docker --version
+Docker version 20.10.24+dfsg1, build 297e128
++ docker build -t michaelmisa/movieapp .
+#1 [internal] load build definition from Dockerfile
+#1 sha256:52fb0d8ca1cc685194c9031cd1b752845f9308ef93c5a5f2c117f1742a824d4d
+#1 transferring dockerfile: 890B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/openjdk:21-jdk-slim
+#2 sha256:c96260ac891c628ee759250c0993e36da8d83f51408dd272fe946fd259c2c3f1
+#2 DONE 0.8s
+
+#3 [internal] load .dockerignore
+#3 sha256:19a1879a92fa89c00344d1a0dcf801d43878a6143aa53b6622d485612c2fe839
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#10 [1/6] FROM docker.io/library/openjdk:21-jdk-slim@sha256:7072053847a8a05d7f3a14ebc778a90b38c50ce7e8f199382128a53385160688
+#10 sha256:a64fe153e7f14d5fd7e36a90fc970ae51483adc5e7674783331ac299698e4de8
+#10 resolve docker.io/library/openjdk:21-jdk-slim@sha256:7072053847a8a05d7f3a14ebc778a90b38c50ce7e8f199382128a53385160688 0.0s done
+#10 DONE 0.0s
+
+#7 [internal] load build context
+#7 sha256:f8fff61bf559ad71c9e693e0e12facebc4c5c6e55142d46c585923a08f7a484e
+#7 transferring context: 104.58MB 5.0s
+#7 transferring context: 254.48MB 10.0s
+#7 transferring context: 287.57MB 11.4s done
+#7 DONE 11.5s
+
+#9 [2/6] RUN apt-get update && apt-get install -y     curl     gnupg     ca-certificates     apt-transport-https     software-properties-common     lsb-release     sudo     docker.io  && curl -sL https://deb.nodesource.com/setup_20.x | bash -  && apt-get install -y nodejs  && apt-get clean
+#9 sha256:f61120952285947dd1b39233f54113bfd52b683b61c25f412c438939f3328ded
+#9 CACHED
+
+#8 [3/6] WORKDIR /usr/src/app
+#8 sha256:9f63b22eb1b302170a7a80af7715299fe3a8547029dfe2dc81491262d170caf5
+#8 CACHED
+
+#6 [4/6] COPY . .
+#6 sha256:1a01012bebe688d8236568f345af1968edd05849264d32f70dcd4cf5e006df8f
+#6 DONE 4.1s
+
+#5 [5/6] RUN cd frontend   && npm install   && npm run build   && mkdir -p backend/app/src/main/resources/static   && cp -r build/. backend/app/src/main/resources/static/
+#5 sha256:9001686e9509ba6a0dc5260256fdb7e72034c2eae9261f248743cfc9f18b3431
+#5 2.477 
+#5 2.477 up to date, audited 1387 packages in 2s
+#5 2.477 
+#5 2.477 272 packages are looking for funding
+#5 2.477   run `npm fund` for details
+#5 2.482 
+#5 2.482 12 vulnerabilities (4 moderate, 8 high)
+#5 2.482 
+#5 2.482 To address all issues (including breaking changes), run:
+#5 2.482   npm audit fix --force
+#5 2.482 
+#5 2.482 Run `npm audit` for details.
+#5 2.484 npm notice
+#5 2.484 npm notice New major version of npm available! 10.8.2 -> 11.3.0
+#5 2.484 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.3.0
+#5 2.484 npm notice To update run: npm install -g npm@11.3.0
+#5 2.484 npm notice
+#5 2.578 
+#5 2.578 > frontend@0.1.0 build
+#5 2.578 > react-scripts build
+#5 2.578 
+#5 3.321 Creating an optimized production build...
+#5 9.787 Compiled successfully.
+#5 9.787 
+#5 9.787 File sizes after gzip:
+#5 9.787 
+#5 9.803   59.48 kB  build/static/js/main.04290f3e.js
+#5 9.803   31.72 kB  build/static/css/main.1a74e440.css
+#5 9.803   1.77 kB   build/static/js/453.8ab44547.chunk.js
+#5 9.803 
+#5 9.803 The project was built assuming it is hosted at ./.
+#5 9.804 You can control this with the homepage field in your package.json.
+#5 9.804 
+#5 9.804 The build folder is ready to be deployed.
+#5 9.804 
+#5 9.804 Find out more about deployment here:
+#5 9.804 
+#5 9.804   https://cra.link/deployment
+#5 9.804 
+#5 DONE 10.0s
+
+#4 [6/6] RUN cd backend   && chmod +x gradlew   && ./gradlew bootJar
+#4 sha256:f4c1d98b8c36e54d02804f37c04c305c8e958f0658e1c1fa2babdabecc9fab84
+#4 0.584 Downloading https://services.gradle.org/distributions/gradle-8.12-bin.zip
+#4 1.610 .............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%.............100%
+#4 5.958 
+#4 5.958 Welcome to Gradle 8.12!
+#4 5.958 
+#4 5.958 Here are the highlights of this release:
+#4 5.959  - Enhanced error and warning reporting with the Problems API
+#4 5.959  - File-system watching support on Alpine Linux
+#4 5.959  - Build and test Swift 6 libraries and apps
+#4 5.959 
+#4 5.960 For more details see https://docs.gradle.org/8.12/release-notes.html
+#4 5.960 
+#4 6.057 Starting a Gradle Daemon (subsequent builds will be faster)
+#4 8.057 Calculating task graph as no cached configuration is available for tasks: bootJar
+#4 16.96 
+#4 16.96 > Configure project :app
+#4 16.96 The 'sonarqube' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+#4 16.96 The 'sonar' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+#4 22.66 
+#4 22.66 > Task :app:processResources
+#4 27.36 > Task :app:compileJava
+#4 27.36 > Task :app:classes
+#4 27.36 > Task :app:resolveMainClassName
+#4 28.66 > Task :app:bootJar
+#4 28.66 
+#4 28.66 [Incubating] Problems report is available at: file:///usr/src/app/backend/build/reports/problems/problems-report.html
+#4 28.66 
+#4 28.66 Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+#4 28.66 
+#4 28.66 You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+#4 28.66 
+#4 28.66 For more on this, please refer to https://docs.gradle.org/8.12/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+#4 28.66 
+#4 28.66 BUILD SUCCESSFUL in 28s
+#4 28.66 4 actionable tasks: 4 executed
+#4 28.66 Configuration cache entry stored.
+#4 DONE 29.1s
+
+#11 exporting to image
+#11 sha256:68b0ef4638f573dbcd804471b7095e2aafc35e273e8c2be42ce0594d341ee4b4
+#11 exporting layers
+#11 exporting layers 9.0s done
+#11 exporting manifest sha256:dcaa4f8cb14bec3b50c179ac256afcb72d387b78afe1734941255d707e9f2965 0.0s done
+#11 exporting config sha256:2c8d963d73841ba09db4250b5e4e7207cfb03b8ae4947fd5ed278c283f8f72e0 0.0s done
+#11 naming to docker.io/michaelmisa/movieapp:latest done
+#11 unpacking to docker.io/michaelmisa/movieapp:latest
+#11 unpacking to docker.io/michaelmisa/movieapp:latest 5.6s done
+#11 DONE 14.7s
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Push)
+[Pipeline] withCredentials
+Masking supported pattern matches of $USERNAME or $PASSWORD
+[Pipeline] {
+[Pipeline] sh
++ echo >> Docker Login und Push
+>> Docker Login und Push
++ echo ****
++ docker login -u **** --password-stdin
+WARNING! Your password will be stored unencrypted in /home/jenkins/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
++ docker push ****/movieapp
+Using default tag: latest
+The push refers to repository [docker.io/****/movieapp]
+31b5e06c287e: Waiting
+b39ec18d4b8b: Waiting
+a803e7c4b030: Waiting
+b4972576c83d: Waiting
+b0f70b323a63: Waiting
+af800cd8441e: Waiting
+456a077e0205: Waiting
+35a46b6edc62: Waiting
+31b5e06c287e: Waiting
+b39ec18d4b8b: Waiting
+a803e7c4b030: Waiting
+b4972576c83d: Waiting
+b0f70b323a63: Waiting
+af800cd8441e: Waiting
+456a077e0205: Waiting
+35a46b6edc62: Waiting
+a803e7c4b030: Waiting
+b4972576c83d: Waiting
+b0f70b323a63: Waiting
+af800cd8441e: Waiting
+456a077e0205: Waiting
+35a46b6edc62: Waiting
+31b5e06c287e: Waiting
+b39ec18d4b8b: Waiting
+b4972576c83d: Waiting
+b0f70b323a63: Waiting
+af800cd8441e: Waiting
+456a077e0205: Waiting
+35a46b6edc62: Waiting
+31b5e06c287e: Waiting
+b39ec18d4b8b: Waiting
+a803e7c4b030: Waiting
+31b5e06c287e: Waiting
+b39ec18d4b8b: Waiting
+a803e7c4b030: Waiting
+b4972576c83d: Waiting
+b0f70b323a63: Waiting
+af800cd8441e: Waiting
+456a077e0205: Waiting
+35a46b6edc62: Waiting
+b4972576c83d: Waiting
+b0f70b323a63: Waiting
+af800cd8441e: Waiting
+456a077e0205: Waiting
+35a46b6edc62: Waiting
+31b5e06c287e: Waiting
+b39ec18d4b8b: Waiting
+a803e7c4b030: Waiting
+a803e7c4b030: Waiting
+b4972576c83d: Waiting
+b0f70b323a63: Waiting
+af800cd8441e: Waiting
+456a077e0205: Waiting
+35a46b6edc62: Waiting
+31b5e06c287e: Waiting
+b39ec18d4b8b: Waiting
+b39ec18d4b8b: Waiting
+a803e7c4b030: Waiting
+b4972576c83d: Waiting
+b0f70b323a63: Waiting
+af800cd8441e: Waiting
+456a077e0205: Waiting
+35a46b6edc62: Waiting
+31b5e06c287e: Waiting
+af800cd8441e: Waiting
+456a077e0205: Waiting
+35a46b6edc62: Waiting
+31b5e06c287e: Waiting
+b39ec18d4b8b: Waiting
+a803e7c4b030: Waiting
+b4972576c83d: Waiting
+b0f70b323a63: Waiting
+456a077e0205: Waiting
+35a46b6edc62: Waiting
+31b5e06c287e: Waiting
+b39ec18d4b8b: Waiting
+a803e7c4b030: Waiting
+b4972576c83d: Layer already exists
+b0f70b323a63: Waiting
+af800cd8441e: Waiting
+a803e7c4b030: Layer already exists
+b0f70b323a63: Waiting
+af800cd8441e: Layer already exists
+456a077e0205: Waiting
+35a46b6edc62: Waiting
+31b5e06c287e: Waiting
+b39ec18d4b8b: Waiting
+31b5e06c287e: Waiting
+b0f70b323a63: Waiting
+456a077e0205: Waiting
+35a46b6edc62: Waiting
+456a077e0205: Waiting
+31b5e06c287e: Waiting
+b0f70b323a63: Waiting
+456a077e0205: Layer already exists
+31b5e06c287e: Layer already exists
+35a46b6edc62: Pushed
+b39ec18d4b8b: Pushed
+b0f70b323a63: Pushed
+latest: digest: sha256:dcaa4f8cb14bec3b50c179ac256afcb72d387b78afe1734941255d707e9f2965 size: 1893
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

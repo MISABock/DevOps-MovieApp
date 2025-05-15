@@ -54,7 +54,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'Sonarqube-movieApp', variable: 'TOKEN')]) {
                     dir('backend') {
-                        sh '''#!/bin/bash
+                        sh '''
                             ./gradlew sonar \
                               -Dsonar.projectKey=movieApp-backend \
                               -Dsonar.projectName="movieApp Backend" \
@@ -84,6 +84,16 @@ pipeline {
                         echo $PASSWORD | docker login -u $USERNAME --password-stdin
                         docker push michaelmisa/movieapp
                     '''
+                }
+            }
+        }
+
+        stage('Trigger Render Deployment') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'renderSecret', variable: 'KEY')]) {
+                        sh 'curl https://api.render.com/deploy/$KEY'
+                    }
                 }
             }
         }
