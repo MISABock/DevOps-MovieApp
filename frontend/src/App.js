@@ -43,7 +43,7 @@ function App() {
         <input
           type="text"
           className="form-control"
-          placeholder="Filmtitel eingeben..."
+          placeholder="Filmtitel eingeben Bitte..."
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />

@@ -138,7 +138,20 @@ Als nächstes habe habe ich mich auf Render.com angemeldet, einen neuen Web-Serv
 den Render-Token kopiert und als Credential in Jenkins erstellt:
 [RednerSecretIntoJenkins](images/RednerSecretIntoJenkins.png)
 
+Hier sieht man die Deployement-ID
+[DeployedOnRender](images/DeployedOnRender.png)
 
+
+Als nächstes habe ich einen zweiten Web-Service erstellen lassen. Und zwar einen Postgres Service, da meine Applikation eine DB versendet.
+[PostgresDBRender](images/PostgresDBRender.png)
+
+Damit die Verbindung Zwischen der Postgres DB und der Movie-App auch über Render funktioniert und beide Service miteinander kommunizieren können, habe ich eine paar Umgebungsvariablen an die Movie-App übergeben.
+[EnvForMovieAppRender](images/EnvForMovieAppRender.png)
+[MovieAppRunningOnRender](images/MovieAppRunningOnRender.png)
+
+Das Deployement läuft auf folgender URL: https://movieapp-tskr.onrender.com
+Wie man mit dem Eintrag "Film Bockmic1" sieht, wurde auch die DB korrekt verbunden.
+[RunningOnRender](images/RunningOnRender.png)
 
 
 
