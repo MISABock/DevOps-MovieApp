@@ -153,5 +153,7 @@ Das Deployement läuft auf folgender URL: https://movieapp-tskr.onrender.com
 Wie man mit dem Eintrag "Film Bockmic1" sieht, wurde auch die DB korrekt verbunden.
 [RunningOnRender](images/RunningOnRender.png)
 
-
+Als nächstes habe ich die Integretion zwischen Jenkins, VS-Code und render.com geprüft.
+[newVersionPublished](images/newVersionPublished.png)
+[newVersionSuccessfullyDeployed](images/newVersionSuccessfullyDeployed.png)
 
