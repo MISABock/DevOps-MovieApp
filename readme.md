@@ -173,3 +173,10 @@ Hier siehtn man wie es über Azure läuft.
 [runningOnAzure](images/runningOnAzure.png)
 [LogsRunningOnAzure](images/LogsRunningOnAzure.png)
 
+Als nächstes habe ich die Repo-Secrets hinzugefügt
+[RepoSecrets](images/RepoSecrets.png)
+
+Als nächstes habe ich das deploy.yml erstellt, damit bei jedem Push ein Docker-Image gebaut und auf Dokcerhub gepushed wird. -> dann auch Azure deployed
+[rebuildingDockerImageAfterPush](images/rebuildingDockerImageAfterPush.png)
+[PipelineGuthub](images/PipelineGuthub.png)
+
