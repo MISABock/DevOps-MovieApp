@@ -157,3 +157,19 @@ Als nächstes habe ich die Integretion zwischen Jenkins, VS-Code und render.com 
 [newVersionPublished](images/newVersionPublished.png)
 [newVersionSuccessfullyDeployed](images/newVersionSuccessfullyDeployed.png)
 
+Cloud Deployment
+
+Als erstes habe ich eine eigene Ressourcen-Gruppe erstellt. Dannach gleich einen App Service Plan erstellt und die App selber erstellt.
+[newResourceGroup](images/newResourceGroup.png)
+[AppServicePlanCreated](images/AppServicePlanCreated.png)
+[AppCreatedAzure](images/AppCreatedAzure.png)
+
+
+Auf folgendem Bild sieht man dass die App erfolgreich uploaded wurde
+[AppServiceRunningOnAzure](images/AppServiceRunningOnAzure.png)
+
+
+Hier siehtn man wie es über Azure läuft.
+[runningOnAzure](images/runningOnAzure.png)
+[LogsRunningOnAzure](images/LogsRunningOnAzure.png)
+
